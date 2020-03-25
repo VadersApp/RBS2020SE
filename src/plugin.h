@@ -1,13 +1,11 @@
 #pragma once
 #include "skse64/PapyrusNativeFunctions.h"
 
-namespace RBS2020
-{
+namespace RBS2020 {
 
 	bool RegisterFuncs(VMClassRegistry* registry);
 	void MorphFemale(StaticFunctionTag* base);
 	void MorphMale(StaticFunctionTag* base);
-
 
 	void SetSeedOffset(StaticFunctionTag* base, BSFixedString seedOffset);
 	BSFixedString GetSeedOffset(StaticFunctionTag* base);
@@ -33,5 +31,4 @@ namespace RBS2020
 	void PreFilterActors(StaticFunctionTag* base);
 	bool IsPrefiltered(StaticFunctionTag* base);
 
-}
-
+} // namespace RBS2020

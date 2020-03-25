@@ -1,11 +1,9 @@
 #pragma once
+#include "re/skyrim.h"
 #include "skee/IPluginInterface.h"
 #include "skse64/PapyrusNativeFunctions.h"
-#include "re/skyrim.h"
 
-
-namespace RBS2020
-{
+namespace RBS2020 {
 	class Morph {
 	private:
 		static inline bool skipEssential = false;
@@ -13,7 +11,6 @@ namespace RBS2020
 		static inline IBodyMorphInterface* bodyMorphInterface;
 
 	public:
-
 		static void PrintMorphs(RE::Actor* myActor);
 		static SInt32 MorphFemale();
 		static SInt32 MorphMale();
@@ -24,7 +21,7 @@ namespace RBS2020
 		static void MorphActorBHUNP(RE::Actor* myActor);
 		static void MorphActorSMMB(RE::Actor* myActor);
 		static void DeleteMorph(RE::Actor* myActor);
-		//static void OutfitTest(RE::Actor* myActor);
+		// static void OutfitTest(RE::Actor* myActor);
 
 		static float CalculateFitness(RE::Actor* myActor);
 		static float CalculateMusclepower(RE::Actor* myActor);
@@ -36,7 +33,6 @@ namespace RBS2020
 
 		static float GetMorphfactorBreasts(StaticFunctionTag* base);
 		static void SetMorphfactorBreasts(StaticFunctionTag* base, float fmorphfactorBreasts);
-
 		static void DeleteMorphs();
 
 		static bool TriFemaleExists();
@@ -47,4 +43,4 @@ namespace RBS2020
 		static void SetSkipUnique(bool mySkipUnique);
 		static bool GetSkipUnique();
 	};
-}
+} // namespace RBS2020

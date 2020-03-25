@@ -153,7 +153,7 @@
     <ClInclude Include="include\versiondb.h" />
     <ClInclude Include="src\actors.h" />
     <ClInclude Include="src\morph.h" />
-    <ClInclude Include="src\MorphProcedural.h" />
+    <ClInclude Include="src\morphProcedural.h" />
     <ClInclude Include="src\outfit.h" />
     <ClInclude Include="src\plugin.h" />
   </ItemGroup>
@@ -169,7 +169,7 @@
     <ClCompile Include="src\actors.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\morph.cpp" />
-    <ClCompile Include="src\MorphProcedural.cpp" />
+    <ClCompile Include="src\morphProcedural.cpp" />
     <ClCompile Include="src\outfit.cpp" />
     <ClCompile Include="src\plugin.cpp" />
   </ItemGroup>

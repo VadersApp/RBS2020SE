@@ -1,11 +1,11 @@
 
 #include "plugin.h"
-#include "MorphProcedural.h"
+#include "morphProcedural.h"
 #include "morph.h"
 #include "actors.h"
 
 namespace RBS2020 {
-    SInt32 femalesFound = 0;
+	SInt32 femalesFound = 0;
 	SInt32 malesFound = 0;
 
 	bool RegisterFuncs(VMClassRegistry* registry) {
@@ -54,7 +54,7 @@ namespace RBS2020 {
 	bool GetSkipUnique(StaticFunctionTag* base) {
 		return Morph::GetSkipUnique();
 	}
-	
+
 	void SetSeedOffset(StaticFunctionTag* base, BSFixedString s_seedOffset) {
 		SInt32 seedOffset = std::strtol(s_seedOffset.c_str(), nullptr, 10);
 		MorphProcedural::SetSeedOffset(seedOffset);

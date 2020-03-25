@@ -1,24 +1,18 @@
 #include "actors.h"
-
+#include "re/skyrim.h"
 
 namespace RBS2020 {
 
-	
-
 	void Actors::PrefilterActors() {
 		_MESSAGE("Prefiltering Actors Start");
+
 		bool isCreature;
 		ActorsMale.clear();
 		ActorsFemale.clear();
 		_MESSAGE("Vectors cleared");
-		auto lookup = RE::GlobalLookupInfo::GetSingleton();
-		_MESSAGE("Got loopup Singleton");
-		RE::BSReadLockGuard locker(lookup->allFormsMapLock);
-		_MESSAGE("Got loopup Guard");
-		if (!lookup->allForms) {
-		}
+		auto allForms = RE::TESForm::GetAllForms();
 		_MESSAGE("Got all Forms");
-		auto& formIDs = *lookup->allForms;
+		auto& formIDs = *allForms.first;
 		for (auto elem : formIDs) {
 			if ((int)elem.second->GetFormType() == 62) {
 				//_MESSAGENNL("\n1,");
@@ -51,7 +45,8 @@ namespace RBS2020 {
 											//_MESSAGENNL("10,");
 											if (myActor->GetActorBase()->voiceType) {
 												//_MESSAGENNL("11,");
-												auto vt = myActor->GetActorBase()->voiceType->GetFormEditorID();
+												auto vt =
+													myActor->GetActorBase()->voiceType->GetFormEditorID();
 												//_MESSAGENNL("12,");
 												std::string voicename = vt;
 												int counter_voices = 0;
@@ -73,12 +68,16 @@ namespace RBS2020 {
 																//_MESSAGENNL("17aa,");
 																if (!myActor->GetActorBase()->IsUnique()) {
 																	//_MESSAGENNL("added");
-																	ActorsFemale.push_back(RE::TESForm::LookupByID<RE::Actor>(elem.first));
+																	ActorsFemale.push_back(
+																		RE::TESForm::LookupByID<RE::Actor>(
+																			elem.first));
 																}
 															}
 															else {
 																//_MESSAGENNL("added");
-																ActorsFemale.push_back(RE::TESForm::LookupByID<RE::Actor>(elem.first));
+																ActorsFemale.push_back(
+																	RE::TESForm::LookupByID<RE::Actor>(
+																		elem.first));
 															}
 														}
 														else {
@@ -86,12 +85,16 @@ namespace RBS2020 {
 															if (Morph::GetSkipUnique()) {
 																if (!myActor->GetActorBase()->IsUnique()) {
 																	//_MESSAGENNL("added");
-																	ActorsMale.push_back(RE::TESForm::LookupByID<RE::Actor>(elem.first));
+																	ActorsMale.push_back(
+																		RE::TESForm::LookupByID<RE::Actor>(
+																			elem.first));
 																}
 															}
 															else {
 																//_MESSAGENNL("added");
-																ActorsMale.push_back(RE::TESForm::LookupByID<RE::Actor>(elem.first));
+																ActorsMale.push_back(
+																	RE::TESForm::LookupByID<RE::Actor>(
+																		elem.first));
 															}
 														}
 													}
@@ -109,15 +112,8 @@ namespace RBS2020 {
 		prefiltered = true;
 		_MESSAGE("Prefiltering End");
 	}
-	bool  Actors::IsPrefiltered() {
-		return prefiltered;
-	}
+	bool Actors::IsPrefiltered() { return prefiltered; }
 
-	std::vector<RE::Actor*> Actors::GetFemales() {
-		return ActorsFemale;
-		
-	 }
-	std::vector<RE::Actor*>  Actors::GetMales() {
-		return ActorsMale;
-	 }
-}
+	std::vector<RE::Actor*> Actors::GetFemales() { return ActorsFemale; }
+	std::vector<RE::Actor*> Actors::GetMales() { return ActorsMale; }
+} // namespace RBS2020

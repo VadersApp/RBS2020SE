@@ -15,9 +15,6 @@
     <ClInclude Include="src\plugin.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\MorphProcedural.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="include\versiondb.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -30,15 +27,15 @@
     <ClInclude Include="src\outfit.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\morphProcedural.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\plugin.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MorphProcedural.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\morph.cpp">
@@ -48,6 +45,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\outfit.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\morphProcedural.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
