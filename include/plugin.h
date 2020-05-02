@@ -3,6 +3,7 @@
 
 namespace RBS2020 {
 
+	
 	bool RegisterFuncs(VMClassRegistry* registry);
 	void MorphFemale(StaticFunctionTag* base);
 	void MorphMale(StaticFunctionTag* base);
@@ -28,7 +29,9 @@ namespace RBS2020 {
 
 	bool TriFemaleExists(StaticFunctionTag* base);
 	bool TriMaleExists(StaticFunctionTag* base);
-	void PreFilterActors(StaticFunctionTag* base);
+	SInt32 PreFilterActors(StaticFunctionTag* base);
 	bool IsPrefiltered(StaticFunctionTag* base);
+	void ChangeHair(StaticFunctionTag* base);;
+	RE::FormID GetRandomFemaleFormID(StaticFunctionTag* base);
 
 } // namespace RBS2020

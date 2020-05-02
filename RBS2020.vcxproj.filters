@@ -12,23 +12,29 @@
     <ClInclude Include="include\version.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="src\plugin.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="include\versiondb.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="src\morph.h">
-      <Filter>src</Filter>
+    <ClInclude Include="include\actors.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="src\actors.h">
-      <Filter>src</Filter>
+    <ClInclude Include="include\headparts.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="src\outfit.h">
-      <Filter>src</Filter>
+    <ClInclude Include="include\morph.h">
+      <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="src\morphProcedural.h">
-      <Filter>src</Filter>
+    <ClInclude Include="include\morphProcedural.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\niftyFunctions.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\outfit.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\plugin.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +54,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\morphProcedural.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\headparts.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

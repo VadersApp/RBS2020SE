@@ -1,3 +1,4 @@
+#pragma once
 #include "re/skyrim.h"
 
 namespace RBS2020 {

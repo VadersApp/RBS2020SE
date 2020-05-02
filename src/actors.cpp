@@ -1,11 +1,26 @@
 #include "actors.h"
+#include "random"
 #include "re/skyrim.h"
+namespace RBS2020
+{
+	Actors::Actors()
+	{
+		this->prefiltered = false;
+	}
 
-namespace RBS2020 {
-
-	void Actors::PrefilterActors() {
+	Actors* Actors::_instance = 0;
+	Actors* Actors::GetSingleton()
+	{
+		if (!_instance)
+			_instance = new Actors();
+		return _instance;
+	}
+	auto Morph = Morph::GetSingleton();
+	SInt32 Actors::PrefilterActors()
+	{
 		_MESSAGE("Prefiltering Actors Start");
-
+		int counter = 0;
+		auto player = RE::PlayerCharacter::GetSingleton();
 		bool isCreature;
 		ActorsMale.clear();
 		ActorsFemale.clear();
@@ -15,87 +30,43 @@ namespace RBS2020 {
 		auto& formIDs = *allForms.first;
 		for (auto elem : formIDs) {
 			if ((int)elem.second->GetFormType() == 62) {
-				//_MESSAGENNL("\n1,");
 				RE::Actor* myActor = RE::TESForm::LookupByID<RE::Actor>(elem.first);
 				if (myActor) {
-					//_MESSAGENNL("2,");
 					if (myActor->GetRace()) {
-						//_MESSAGENNL("3,");
 						if (myActor->GetActorBase()) {
-							//_MESSAGENNL("4,");
 							//	if (myActor->GetActorBase()->defaultOutfit) {
 							if (myActor->GetActorBase()->factions.size() > 0) {
-								//_MESSAGENNL("5,");
 								if (myActor->GetActorBase()->factions.begin()) {
-									//_MESSAGENNL("6,");
 									if (myActor->GetActorBase()->factions.begin()->faction) {
-										//_MESSAGENNL("7,");
 										isCreature = false;
-										//_MESSAGENNL("8,");
 										for (auto faction : myActor->GetActorBase()->factions) {
 											if (faction.faction->GetFormID() == 19) {
-												//_MESSAGENNL("9a,");
 												isCreature = true;
-											}
-											else {
-												//_MESSAGENNL("9b,");
+											} else {
 											}
 										}
 										if (!isCreature) {
-											//_MESSAGENNL("10,");
 											if (myActor->GetActorBase()->voiceType) {
-												//_MESSAGENNL("11,");
-												auto vt =
-													myActor->GetActorBase()->voiceType->GetFormEditorID();
-												//_MESSAGENNL("12,");
+												auto vt = myActor->GetActorBase()->voiceType->GetFormEditorID();
 												std::string voicename = vt;
 												int counter_voices = 0;
 												if (voicename.find("Female") != std::string::npos) {
 													counter_voices++;
-													//_MESSAGENNL("13a,");
 												}
 												if (voicename.find("Male") != std::string::npos) {
-													//_MESSAGENNL("13b,");
 													counter_voices++;
 												}
 												if (counter_voices > 0) {
-													//_MESSAGENNL("14,");
 													if (!myActor->IsChild()) {
-														//_MESSAGENNL("15,");
-														if (myActor->GetActorBase()->IsFemale()) {
-															//_MESSAGENNL("16aa,");
-															if (Morph::GetSkipUnique()) {
-																//_MESSAGENNL("17aa,");
-																if (!myActor->GetActorBase()->IsUnique()) {
-																	//_MESSAGENNL("added");
-																	ActorsFemale.push_back(
-																		RE::TESForm::LookupByID<RE::Actor>(
-																			elem.first));
-																}
-															}
-															else {
-																//_MESSAGENNL("added");
-																ActorsFemale.push_back(
-																	RE::TESForm::LookupByID<RE::Actor>(
-																		elem.first));
-															}
+														if (myActor == player) {
+															continue;
 														}
-														else {
-															//_MESSAGENNL("16ba,");
-															if (Morph::GetSkipUnique()) {
-																if (!myActor->GetActorBase()->IsUnique()) {
-																	//_MESSAGENNL("added");
-																	ActorsMale.push_back(
-																		RE::TESForm::LookupByID<RE::Actor>(
-																			elem.first));
-																}
-															}
-															else {
-																//_MESSAGENNL("added");
-																ActorsMale.push_back(
-																	RE::TESForm::LookupByID<RE::Actor>(
-																		elem.first));
-															}
+														counter++;
+														if (myActor->GetActorBase()->IsFemale()) {
+															ActorsFemale.push_back(RE::TESForm::LookupByID<RE::Actor>(elem.first));
+
+														} else {
+															ActorsMale.push_back(RE::TESForm::LookupByID<RE::Actor>(elem.first));
 														}
 													}
 												}
@@ -110,10 +81,25 @@ namespace RBS2020 {
 			}
 		}
 		prefiltered = true;
+
 		_MESSAGE("Prefiltering End");
+		return counter;
 	}
 	bool Actors::IsPrefiltered() { return prefiltered; }
 
 	std::vector<RE::Actor*> Actors::GetFemales() { return ActorsFemale; }
 	std::vector<RE::Actor*> Actors::GetMales() { return ActorsMale; }
-} // namespace RBS2020
+
+	RE::FormID Actors::GetRandomFemaleFormID()
+	{
+		auto females = GetFemales();
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<int> d(0, females.size());
+		int pos = d(gen);
+		auto formid = females[pos]->GetFormID();
+		females.erase(females.begin() + pos);
+		return formid;
+	}
+
+}  // namespace RBS2020
