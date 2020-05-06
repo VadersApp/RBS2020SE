@@ -25,6 +25,7 @@ namespace RBS2020
 		registry->RegisterFunction(new NativeFunction1<StaticFunctionTag, void, float>("SetMorphfactorFemale", "RBS2020PluginScript", RBS2020::SetMorphfactorFemale, registry));
 		registry->RegisterFunction(new NativeFunction1<StaticFunctionTag, void, float>("SetMorphfactorMale", "RBS2020PluginScript", RBS2020::SetMorphfactorMale, registry));
 		registry->RegisterFunction(new NativeFunction0<StaticFunctionTag, float>("GetMorphfactorBreasts", "RBS2020PluginScript", RBS2020::GetMorphfactorBreasts, registry));
+		registry->RegisterFunction(new NativeFunction0<StaticFunctionTag, float>("GetMorphfactorMuscles", "RBS2020PluginScript", RBS2020::GetMorphfactorMuscles, registry));
 		registry->RegisterFunction(new NativeFunction1<StaticFunctionTag, void, float>("SetMorphfactorBreasts", "RBS2020PluginScript", RBS2020::SetMorphfactorBreasts, registry));
 		registry->RegisterFunction(new NativeFunction0<StaticFunctionTag, SInt32>("GetFemalesFound", "RBS2020PluginScript", RBS2020::GetFemalesFound, registry));
 		registry->RegisterFunction(new NativeFunction0<StaticFunctionTag, SInt32>("GetMalesFound", "RBS2020PluginScript", RBS2020::GetMalesFound, registry));
@@ -165,5 +166,15 @@ namespace RBS2020
 	float GetMorphfactorBreasts(StaticFunctionTag* base)
 	{
 		return MorphProcedural->GetMorphfactorBreasts();
+	}
+
+	void SetMorphfactorMuscles(StaticFunctionTag* base, float morphfactorMuscles)
+	{
+		MorphProcedural->SetMorphfactorMuscles(morphfactorMuscles);
+	}
+
+	float GetMorphfactorMuscles(StaticFunctionTag* base)
+	{
+		return MorphProcedural->GetMorphfactorMuscles();
 	}
 };

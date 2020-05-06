@@ -10,7 +10,7 @@ namespace RBS2020
 		void SetFormID(SInt32 formID);
 
 		float GetWeight();
-		void SetWeight(float fweight);
+		void SetWeight(float weight);
 
 		float GetMusclepower();
 		void SetMusclepower(float musclepower);
@@ -22,19 +22,22 @@ namespace RBS2020
 		float GetGravityOffset();
 
 		void SetSeed(SInt32 seed);
-		void SetSeedOffset(SInt32 mySeedOffset);
+		void SetSeedOffset(SInt32 seedOffset);
 		SInt32 GetSeedOffset();
 
-		void SetMorphfactor(float fmorphfactorMale);
+		void SetMorphfactor(float morphfactorMale);
 
 		float GetMorphfactorFemale();
 		float GetMorphfactorMale();
 
-		void SetMorphfactorMale(float fmorphfactorMale);
-		void SetMorphfactorFemale(float fmorphfactorFeMale);
+		void SetMorphfactorMale(float morphfactorMale);
+		void SetMorphfactorFemale(float morphfactorFeMale);
 
 		float GetMorphfactorBreasts();
-		void SetMorphfactorBreasts(float fmorphfactorBreasts);
+		void SetMorphfactorBreasts(float morphfactorBreasts);
+
+		float GetMorphfactorMuscles();
+		void SetMorphfactorMuscles(float morphfactorMuscles);
 
 		float GetRandomFloat(float min, float max);
 		float GetRandomFloatNormalByWeight(float min, float max);
@@ -120,22 +123,23 @@ namespace RBS2020
 
 	private:
 		static MorphProcedural* _instance;
-		MorphProcedural() {} /* verhindert, dass ein Objekt von außerhalb von N erzeugt wird. */
+		MorphProcedural(); /* verhindert, dass ein Objekt von außerhalb von N erzeugt wird. */
 		// protected, wenn man von der Klasse noch erben möchte
 		MorphProcedural(const MorphProcedural&); /* verhindert, dass eine weitere Instanz via
 		Kopie-Konstruktor erstellt werden kann */
 		~MorphProcedural() {}
 
-		SInt32 formID = 0;
-		float weight = 0;
-		float musclepower = 0;
-		float morphfactor = 100;
-		float morphfactorFemale = 100;
-		float morphfactorMale = 100;
-		float morphfactorBreasts = 100;
-		float musclePower = 0;
-		float fitness = 0;
-		float gravityOffset = 0;
-		SInt32 seedOffset = 0;
+		SInt32 formID;
+		float weight;
+		float musclepower;
+		float morphfactor;
+		float morphfactorFemale;
+		float morphfactorMale;
+		float morphfactorBreasts;
+		float morphfactorMuscles;
+		float musclePower;
+		float fitness;
+		float gravityOffset;
+		SInt32 seedOffset;
 	};
 }  // namespace RBS2020

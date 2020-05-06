@@ -81,7 +81,6 @@ namespace RBS2020
 			}
 		}
 		prefiltered = true;
-
 		_MESSAGE("Prefiltering End");
 		return counter;
 	}

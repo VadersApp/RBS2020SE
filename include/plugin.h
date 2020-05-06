@@ -1,9 +1,8 @@
 #pragma once
 #include "skse64/PapyrusNativeFunctions.h"
 
-namespace RBS2020 {
-
-	
+namespace RBS2020
+{
 	bool RegisterFuncs(VMClassRegistry* registry);
 	void MorphFemale(StaticFunctionTag* base);
 	void MorphMale(StaticFunctionTag* base);
@@ -18,7 +17,11 @@ namespace RBS2020 {
 	void SetMorphfactorFemale(StaticFunctionTag* base, float morphfactor);
 
 	float GetMorphfactorBreasts(StaticFunctionTag* base);
-	void SetMorphfactorBreasts(StaticFunctionTag* base, float fmorphfactorBreasts);
+	void SetMorphfactorBreasts(StaticFunctionTag* base, float morphfactorBreasts);
+
+	float GetMorphfactorMuscles(StaticFunctionTag* base);
+	void SetMorphfactorMuscles(StaticFunctionTag* base, float morphfactorMuscles);
+
 	SInt32 GetFemalesFound(StaticFunctionTag* base);
 	SInt32 GetMalesFound(StaticFunctionTag* base);
 	void DeleteMorphs(StaticFunctionTag* base);
@@ -31,7 +34,8 @@ namespace RBS2020 {
 	bool TriMaleExists(StaticFunctionTag* base);
 	SInt32 PreFilterActors(StaticFunctionTag* base);
 	bool IsPrefiltered(StaticFunctionTag* base);
-	void ChangeHair(StaticFunctionTag* base);;
+	void ChangeHair(StaticFunctionTag* base);
+	;
 	RE::FormID GetRandomFemaleFormID(StaticFunctionTag* base);
 
-} // namespace RBS2020
+}  // namespace RBS2020

@@ -2,8 +2,21 @@
 #include "random"
 namespace RBS2020
 {
-
-
+	MorphProcedural::MorphProcedural()
+	{
+		formID = 0;
+		weight = 0;
+		musclepower = 0;
+		morphfactor = 50;
+		morphfactorFemale = 100;
+		morphfactorMale = 100;
+		morphfactorBreasts = 100;
+		morphfactorMuscles = 100;
+		musclePower = 0;
+		fitness = 0;
+		gravityOffset = 0;
+		seedOffset = 0;
+	}
 	MorphProcedural* MorphProcedural::_instance = 0;
 	MorphProcedural* MorphProcedural::GetSingleton()
 	{
@@ -12,14 +25,20 @@ namespace RBS2020
 		return _instance;
 	}
 
-
-	void MorphProcedural::SetSeedOffset(SInt32 mySeedOffset)
+	void MorphProcedural::SetSeedOffset(SInt32 seedOffset)
 	{
-		seedOffset = mySeedOffset;
+		this->seedOffset = seedOffset;
 	}
-	SInt32 MorphProcedural::GetSeedOffset() { return seedOffset; }
 
-	void MorphProcedural::SetSeed(SInt32 seed) { srand(seed + seedOffset); }
+	SInt32 MorphProcedural::GetSeedOffset()
+	{
+		return seedOffset;
+	}
+
+	void MorphProcedural::SetSeed(SInt32 seed)
+	{
+		srand(seed + seedOffset);
+	}
 
 	float MorphProcedural::GetRandomFloat(float min, float max)
 	{
@@ -55,57 +74,75 @@ namespace RBS2020
 		for (int i = 0; i < samples; ++i) {
 			sample = sample + d(gen);
 		}
-		return (sample * (morphfactor / 100));
+		return (sample * ((morphfactor / 100) * (morphfactorMuscles/100)));
 	}
 
-	void MorphProcedural::SetGravityOffset(float myGravityOffset)
+	void MorphProcedural::SetGravityOffset(float gravityOffset)
 	{
-		gravityOffset = myGravityOffset;
+		this->gravityOffset = gravityOffset;
 	}
 
-	float MorphProcedural::GetGravityOffset() { return gravityOffset; }
-
-	float MorphProcedural::GetWeight() { return weight; }
-
-	float MorphProcedural::GetMusclepower() { return musclepower; }
-
-	void MorphProcedural::SetMusclepower(float myMusclepower)
+	float MorphProcedural::GetGravityOffset()
 	{
-		musclepower = myMusclepower;
+		return gravityOffset;
 	}
 
-	float MorphProcedural::GetFitness() { return fitness; }
+	float MorphProcedural::GetWeight()
+	{
+		return weight;
+	}
 
-	void MorphProcedural::SetFitness(float myFitness) { fitness = myFitness; }
+	float MorphProcedural::GetMusclepower()
+	{
+		return musclepower;
+	}
 
-	void MorphProcedural::SetWeight(float fweight) { weight = fweight; }
+	void MorphProcedural::SetMusclepower(float musclepower)
+	{
+		this->musclepower = musclepower;
+	}
+
+	float MorphProcedural::GetFitness()
+	{
+		return this->fitness;
+	}
+
+	void MorphProcedural::SetFitness(float fitness)
+	{
+		this->fitness = fitness;
+	}
+
+	void MorphProcedural::SetWeight(float weight)
+	{
+		this->weight = weight;
+	}
 
 	float MorphProcedural::GetMorphfactorMale()
 	{
-		if (morphfactorMale < 100)
-			morphfactorMale = 100;
+		if (morphfactorMale < 50)
+			morphfactorMale = 50;
 		return morphfactorMale;
 	}
 
 	float MorphProcedural::GetMorphfactorFemale()
 	{
-		if (morphfactorFemale < 100)
-			morphfactorFemale = 100;
+		if (morphfactorFemale < 50)
+			morphfactorFemale = 50;
 		return morphfactorFemale;
 	}
 
-	void MorphProcedural::SetMorphfactor(float fmorphfactor)
+	void MorphProcedural::SetMorphfactor(float morphfactor)
 	{
-		morphfactor = fmorphfactor;
+		this->morphfactor = morphfactor;
 	}
 
-	void MorphProcedural::SetMorphfactorFemale(float fmorphfactor)
+	void MorphProcedural::SetMorphfactorFemale(float morphfactor)
 	{
-		morphfactorFemale = fmorphfactor;
+		this->morphfactorFemale = morphfactor;
 	}
-	void MorphProcedural::SetMorphfactorMale(float fmorphfactor)
+	void MorphProcedural::SetMorphfactorMale(float morphfactor)
 	{
-		morphfactorMale = fmorphfactor;
+		this->morphfactorMale = morphfactor;
 	}
 
 	float MorphProcedural::GetMorphfactorBreasts()
@@ -113,14 +150,24 @@ namespace RBS2020
 		return morphfactorBreasts;
 	}
 
-	void MorphProcedural::SetMorphfactorBreasts(float fmorphfactorBreasts)
+	void MorphProcedural::SetMorphfactorBreasts(float morphfactorBreasts)
 	{
-		morphfactorBreasts = fmorphfactorBreasts;
+		this->morphfactorBreasts = morphfactorBreasts;
 	}
 
-	void MorphProcedural::SetFormID(SInt32 myFormID)
+	float MorphProcedural::GetMorphfactorMuscles()
 	{
-		formID = myFormID;
+		return morphfactorMuscles;
+	}
+
+	void MorphProcedural::SetMorphfactorMuscles(float morphfactorMuscles)
+	{
+		this->morphfactorBreasts = morphfactorMuscles;
+	}
+
+	void MorphProcedural::SetFormID(SInt32 formID)
+	{
+		this->formID = formID;
 	}
 
 	float MorphProcedural::GetMorphValueSamSamuel()

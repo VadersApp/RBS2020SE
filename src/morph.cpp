@@ -23,13 +23,22 @@ namespace RBS2020
 		return true;
 	}
 
-	void Morph::SetSkipEssential(bool mySkipEssential)
+	void Morph::SetSkipEssential(bool skipEssential)
 	{
-		skipEssential = mySkipEssential;
+		this->skipEssential = skipEssential;
 	}
-	bool Morph::GetSkipEssential() { return skipEssential; }
-	void Morph::SetSkipUnique(bool mySkipUnique) { skipUnique = mySkipUnique; }
-	bool Morph::GetSkipUnique() { return skipUnique; }
+	bool Morph::GetSkipEssential()
+	{
+		return skipEssential;
+	}
+	void Morph::SetSkipUnique(bool skipUnique)
+	{
+		this->skipUnique = skipUnique;
+	}
+	bool Morph::GetSkipUnique()
+	{
+		return skipUnique;
+	}
 
 	float Morph::CalculateMusclepower(RE::Actor* myActor)
 	{
